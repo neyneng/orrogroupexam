@@ -74,15 +74,23 @@ class Convert
                    if(substr($value,0,1)!="0"){
                        $output .= $ones[substr($value,0,1)]." ".$hundreds[0];
                    }
-                   if($value < 1000){
-                       $output .= " AND";
+                   if(substr($value,1,2) < 20 && substr($value,1,2) > 0){
+                       if(substr($value,1,1)!="0") {
+                           $output .= " ".$ones[substr($value,1,2)];
+                       }else{
+                           $output .= " ".$ones[substr($value,2,1)];
+                       }
+
+                   }else{
+                       if(substr($value,1,1)!="0") {
+                           $output .= " ".$tens[substr($value,1,1)];
+                       }
+                       if(substr($value,2,1)!="0"){
+                           $output .= " ".$ones[substr($value,2,1)];
+
+                       }
                    }
-                   if(substr($value,1,1)!="0") {
-                       $output .= " ".$tens[substr($value,1,1)];
-                   }
-                   if(substr($value,2,1)!="0"){
-                       $output .= " ".$ones[substr($value,2,1)];
-                   }
+
 
                }
                if($key > 0){
